@@ -14,15 +14,32 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    books: []
+    books: [],
+    bookIdsByShelf: {}
   }
   
   componentWillMount() {
     BooksAPI.getAll()
       .then((books) => {
-        this.setState( () => (
-          {books}
-        ))
+        // Create a data model that is congruent to the response from updateBook
+        // booksByShelf is simply an object with shelf names as attributes whose children are arrays of bookIds
+        let bookIdsByShelf = {};
+        books.forEach(book => {
+          const shelf = book.shelf;
+          const currentShelves = Object.keys(bookIdsByShelf);
+          if (currentShelves.indexOf(shelf) === -1) {
+            bookIdsByShelf[shelf] = [];
+            bookIdsByShelf[shelf].push(book.id);
+          } else {
+            bookIdsByShelf[shelf].push(book.id);
+          }
+        })
+        console.log(bookIdsByShelf)
+
+        this.setState( () => ({
+          books: books,
+          bookIdsByShelf: bookIdsByShelf
+        }))
       })
   }
 
@@ -30,13 +47,14 @@ class BooksApp extends React.Component {
     BooksAPI.update(book, shelf)
       .then((res) => {
         console.log('updateBooksResponse', res);
-        this.setState( () => (
-          {res}
-        ))
+        this.setState( () => ({ 
+          bookIdsByShelf: res 
+        }))
       })
   }
 
   render() {
+
     return (
       <div className="app">
         <div className="list-books">
@@ -45,6 +63,7 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={ () => (
           <Main
             books={this.state.books}
+            bookIdsByShelf={this.state.bookIdsByShelf}
             onUpdateBook={this.updateBook} />
         )} />
         <Route path='/search' render={({ history }) => (

@@ -10,7 +10,7 @@ class Book extends React.Component {
   }
 
   render() {
-    const { book } = this.props;
+    const { book, shelf } = this.props;
     const title = book.title;
     // Reduce book.authors array to a comma separated concat string 
     const authors = book.authors.reduce((prev, val) => (`${prev}, ${val}`));
@@ -19,13 +19,17 @@ class Book extends React.Component {
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${imgUrl}")` }}></div>
+            <div 
+              className="book-cover" 
+              style={{ width: 128, height: 193, backgroundImage: `url("${imgUrl}")` }}
+            ></div>
             <ShelfPicker
               onUpdateBook={this.updateBook}
-              book={book} />
+              book={book}
+              shelf={shelf} />
           </div>
-          <div className="book-title">{this.props.bookTitle}</div>
-          <div className="book-authors">{this.props.authors}</div>
+          <div className="book-title">{title}</div>
+          <div className="book-authors">{authors}</div>
         </div>
       </li>
     )
