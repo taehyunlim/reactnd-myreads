@@ -26,6 +26,16 @@ class BooksApp extends React.Component {
       })
   }
 
+  updateBook = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+      .then((res) => {
+        console.log('updateBooksResponse', res);
+        this.setState( () => (
+          {res}
+        ))
+      })
+  }
+
   render() {
     return (
       <div className="app">
@@ -34,11 +44,13 @@ class BooksApp extends React.Component {
         </div>
         <Route exact path='/' render={ () => (
           <Main
-            books={this.state.books} />
+            books={this.state.books}
+            onUpdateBook={this.updateBook} />
         )} />
         <Route path='/search' render={({ history }) => (
           <Search 
-            books={this.state.books} />
+            books={this.state.books}
+            onUpdateBook={this.updateBook} />
         )} />
       </div>
     )

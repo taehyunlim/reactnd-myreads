@@ -1,16 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BookShelf from './BookShelf.js';
 
 class Main extends React.Component {
-  state = {}
 
-  //
+  updateBook = (book, shelf) => {
+    this.props.onUpdateBook(book, shelf)
+  }
+
+  // toggleGamesPlayedPanel = () => {
+  //   this.setState(oldState => ({
+  //     showGamesPlayed: !oldState.showGamesPlayed,
+  //   }));
+  // };
 
   render() {
+    const { books } = this.props;
+    const shelves = [];
+    books.forEach(book => {
+      if (shelves.indexOf(book.shelf) === -1) {
+        shelves.push(book.shelf)
+      }
+    });
+
+    const booksByShelf = {};
+    books.forEach(book => {
+      const shelf = book.shelf;
+      const currentShelves = Object.keys(booksByShelf);
+      if (currentShelves.indexOf(shelf) === -1) {
+        booksByShelf[shelf] = [];
+        booksByShelf[shelf].push(book);
+      } else {
+        booksByShelf[shelf].push(book);
+      }
+    })
+    console.log(booksByShelf)
+
     return(
       <div>
         <div className="list-books-content">
           <div>
+          {shelves.map((shelf) =>(
+            <BookShelf 
+              key={shelf}
+              shelf={shelf}
+              books={booksByShelf[shelf]}
+              onUpdateBook={this.updateBook} />
+          ))}
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
