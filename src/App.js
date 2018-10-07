@@ -18,7 +18,7 @@ class BooksApp extends React.Component {
     bookIdsByShelf: {}
   }
   
-  componentWillMount() {
+  componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
         // Create a data model that is congruent to the response from updateBook
@@ -69,7 +69,11 @@ class BooksApp extends React.Component {
         <Route path='/search' render={({ history }) => (
           <Search 
             books={this.state.books}
-            onUpdateBook={this.updateBook} />
+            bookIdsByShelf={this.state.bookIdsByShelf}
+            onUpdateBook={(book, shelf) => {
+              this.updateBook(book, shelf)
+              history.push('/')
+            }} />
         )} />
       </div>
     )
