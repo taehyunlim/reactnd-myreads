@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 class ShelfPicker extends React.Component {
   state = {
-    selectedShelf: ''
+    selectedShelf: this.props.shelf
   }
   handleChange = (e) => {
     const shelf = e.target.value, 
@@ -14,6 +14,7 @@ class ShelfPicker extends React.Component {
     // console.log(this.state.selectedShelf)
   }
   render() {
+    console.log("selectedShelf", this.props.shelf)
     return(
       <div className="book-shelf-changer">
         <select value={this.state.selectedShelf} onChange={this.handleChange}>
