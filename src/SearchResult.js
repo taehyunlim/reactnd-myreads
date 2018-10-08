@@ -20,8 +20,6 @@ class SearchResult extends React.Component {
     const booksWithShelf = books.map(book => (
       Object.assign({"shelf": (hash[book.id]) ? hash[book.id] : "none"}, book)
     ))
-    
-    console.log(booksWithShelf)
 
     return(
       <div className="search-books-results">
