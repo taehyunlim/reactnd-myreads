@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class ShelfPicker extends React.Component {
   state = {
@@ -11,10 +11,8 @@ class ShelfPicker extends React.Component {
     this.setState({selectedShelf: shelf});
     // console.log(book, shelf)
     this.props.onUpdateBook(book, shelf)
-    // console.log(this.state.selectedShelf)
   }
   render() {
-    console.log("selectedShelf", this.props.shelf)
     return(
       <div className="book-shelf-changer">
         <select value={this.state.selectedShelf} onChange={this.handleChange}>
