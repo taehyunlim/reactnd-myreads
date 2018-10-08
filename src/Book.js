@@ -1,6 +1,7 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import ShelfPicker from './ShelfPicker';
+// TO DO: Add PropTypes
+// import PropTypes from 'prop-types';
 
 class Book extends React.Component {
   
@@ -15,7 +16,6 @@ class Book extends React.Component {
     // Reduce book.authors array to a comma separated concat string 
     const authors = (book.authors) ? book.authors.reduce((prev, val) => (`${prev}, ${val}`)) : '';
     const imgUrl = (book.imageLinks && book.imageLinks.thumbnail) ? book.imageLinks.thumbnail: '';
-    console.log("shelf: ", shelf)
     return(
       <li>
         <div className="book">
