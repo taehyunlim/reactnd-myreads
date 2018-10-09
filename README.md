@@ -4,7 +4,7 @@ This is a fork based on [the starter template](https://github.com/udacity/reactn
 
 ## TL;DR
 
-To get started developing right away:
+To get the app running right away:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
