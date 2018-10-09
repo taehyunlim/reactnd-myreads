@@ -5,9 +5,9 @@ import ShelfPicker from './ShelfPicker';
 
 class Book extends React.Component {
   
-  updateBook = (book, shelf) => {
+  updateBook = (book, shelf, isNew) => {
     // console.log(book, shelf)
-    this.props.onUpdateBook(book, shelf)
+    this.props.onUpdateBook(book, shelf, isNew)
   }
 
   render() {
