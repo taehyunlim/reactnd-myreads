@@ -4,8 +4,8 @@ import Book from './Book'
 
 class BookShelf extends React.Component {
 
-  updateBook = (book, shelf) => {
-    this.props.onUpdateBook(book, shelf)
+  updateBook = (book, shelf, isNew) => {
+    this.props.onUpdateBook(book, shelf, isNew)
   }
   
   render() {

@@ -1,20 +1,22 @@
 import React from 'react';
 
 class ShelfPicker extends React.Component {
-  state = {
-    selectedShelf: this.props.shelf
-  }
+
   handleChange = (e) => {
     const shelf = e.target.value, 
-    book = this.props.book;
-    this.setState({selectedShelf: shelf});
-    // console.log(book, shelf)
-    this.props.onUpdateBook(book, shelf)
+      book = this.props.book,
+      prevShelf = this.props.shelf
+    if (prevShelf === 'none') {
+      this.props.onUpdateBook(book, shelf, true)
+    } else {
+      this.props.onUpdateBook(book, shelf, false)
+    }
+    
   }
   render() {
     return(
       <div className="book-shelf-changer">
-        <select value={this.state.selectedShelf} onChange={this.handleChange}>
+        <select value={this.props.shelf} onChange={this.handleChange}>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>

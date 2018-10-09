@@ -36,13 +36,13 @@ class BooksApp extends React.Component {
       })
   }
 
-  updateBook = (book, shelf) => {
+  updateBook = (book, shelf, isNew) => {
     BooksAPI.update(book, shelf)
       .then((res) => {
         console.log('updateBooksResponse', res);
         this.setState( () => ({ 
           bookIdsByShelf: res,
-          books: [...this.state.books, book]
+          books: (isNew) ? [...this.state.books, book] : this.state.books
         }))
       })
   }
@@ -62,8 +62,8 @@ class BooksApp extends React.Component {
         <Route path='/search' render={({ history }) => (
           <Search 
             bookIdsByShelf={this.state.bookIdsByShelf}
-            onUpdateBook={(book, shelf) => {
-              this.updateBook(book, shelf)
+            onUpdateBook={(book, shelf, isNew) => {
+              this.updateBook(book, shelf, isNew)
               history.push('/')
             }} />
         )} />
