@@ -37,7 +37,7 @@ To get started developing right away:
     └── index.js # Modified to inlcude React Router library
 ```
 ## Application React Components Outline
-![Outline representation of react components used in the app][myReadsOutline.png]
+![Outline representation of react components used in the app](myReadsOutline.png)
 
 ## Backend Server
 A backend server has been provided with the template. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods required to perform necessary server-side operations and the details for these methods can be found [here](https://github.com/udacity/reactnd-project-myreads-starter#backend-server).
