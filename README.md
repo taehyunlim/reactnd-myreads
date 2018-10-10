@@ -1,6 +1,6 @@
 # MyReads
 
-This is a fork based on [the starter template](https://github.com/udacity/reactnd-project-myreads-starter) for the final assessment project for Udacity's React Fundamentals course. 
+This is a fork based on [the starter template](https://github.com/udacity/reactnd-project-myreads-starter) for the final assessment project for Udacity's React Fundamentals course. The app fetches a library of books from an external API server and allows the user to search for the books in the API database to select and un-select books. Books can be moved between three different shelves: 'Want to Read', 'Currently Reading' and 'Read.' Each UI component and its 'state' data is constructed and managed using the React library. 
 
 ## TL;DR
 
