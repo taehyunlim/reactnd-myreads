@@ -26,12 +26,9 @@ class Search extends React.Component {
         }
       })
   }
+
   clearQuery = () => {
     this.updatedQuery(``)
-  }
-
-  updateBook = (book, shelf, isNew) => {
-    this.props.onUpdateBook(book, shelf, isNew)
   }
 
   render() {
@@ -56,7 +53,7 @@ class Search extends React.Component {
           <SearchResult 
             books={this.state.books}
             bookIdsByShelf={this.props.bookIdsByShelf}
-            onUpdateBook={this.updateBook} />
+            onUpdateBook={this.props.onUpdateBook} />
         }
       </div>
     )
