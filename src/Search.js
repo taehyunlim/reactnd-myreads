@@ -19,7 +19,7 @@ class Search extends React.Component {
           this.setState(() => ({
             books
           }))
-        } else if (books && books.error) {
+        } else {
           this.setState(() => ({
             books: []
           }))
@@ -49,6 +49,9 @@ class Search extends React.Component {
 
           </div>
         </div>
+        {(this.state.books.length === 0) &&
+          <div className="search-books-results">
+            <ol className="books-grid">No results found.</ol></div>}
         {this.state.books.length > 0 &&
           <SearchResult 
             books={this.state.books}
