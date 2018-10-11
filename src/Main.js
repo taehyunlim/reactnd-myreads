@@ -8,7 +8,7 @@ const Main = (props) => {
   let booksByShelf = {}
   shelves.forEach(shelf => {
     booksByShelf[shelf] = [];
-    booksByShelf[shelf] = books.filter(book => (bookIdsByShelf[shelf].indexOf(book.id) !== -1))
+    booksByShelf[shelf] = books.filter(book => (bookIdsByShelf[shelf].find(id => id === book.id)))
   })
 
   return(
